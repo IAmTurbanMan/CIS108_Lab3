@@ -9,7 +9,7 @@ double num1;
 double num2;
 char oper;
 char key;
-string typed = "";
+string firstTyped = "";
 string secondTyped = "";
 int active = 1;
 
@@ -26,7 +26,7 @@ int main()
 			cout << key;
 			if (active == 1)
 			{
-				typed += key;
+				firstTyped += key;
 			}
 			else
 			{
@@ -37,69 +37,69 @@ int main()
 		case '+': case '-': case '*': case '/': case '^':
 			if (active == 1)
 			{
-				num1 = stod(typed);
+				num1 = stod(firstTyped);
 				active = 2;
-				typed = "";
+				firstTyped = "";
 				secondTyped = "";
 			}
 			cout << key;
 			oper = key;
 			break;
 
+		case 's': case 'S':
+			calc::memStore(num1);
+			cout << num1 << " stored." << endl << "> ";
+			break;
+
+		case 'r': case 'R':
+			num1 = calc::memRecall();
+			cout << num1 << " recalled." << endl << "> ";
+			break;
+
+		case 'm': case 'M':
+			calc::memClear();
+			cout << "Memory cleared." << endl << "> ";
+			break;
+
+		case 'i': case 'I':
+			num1 = calc::invert(stod(firstTyped));
+			cout << num1 << endl << "> ";
+			break;
+
 		case 'c': case 'C':
-			cout << "Calculator has been cleared" << endl << "> ";
-			typed = "";
+			cout << "Cleared" << endl << "> ";
+			firstTyped = "";
 			secondTyped = "";
 			num1 = 0;
 			num2 = 0;
 			active = 1;
 			break;
 
-		case 'i': case 'I':
-			num1 = invert(stod(typed));
-			cout << num1 << endl << "> ";
-			break;
-
-		case 'm': case 'M':
-			memClear();
-			cout << "Memory has been cleared." << endl << "> ";
-			break;
-
-		case 'r': case 'R':
-			num1 = memRecall();
-			cout << num1 << " has been recalled." << endl << "> ";
-			break;
-
-		case 's': case 'S':
-			memStore(num1);
-			cout << num1 << " has been stored." << endl << "> ";
-			break;
-
-			case char(13) :
-				cout << endl;
-				if (secondTyped != "")
-				{
+		case char(13) :
+			cout << endl;
+			if (secondTyped != "")
+			{
 					num2 = stod(secondTyped);
 					switch (oper)
 					{
 					case '+':
-						num1 = add(num1, num2);
+						num1 = calc::add(num1, num2);
 						break;
 					
 					case '-':
-						num1 = subtract(num1, num2);
+						num1 = calc::subtract(num1, num2);
 						break;
 
 					case '*':
-						num1 = multiply(num1, num2);
+						num1 = calc::multiply(num1, num2);
 						break;
 
 					case '/':
-						num1 = divide(num1, num2);
+						num1 = calc::divide(num1, num2);
 						break;
 
 					case '^':
-						num1 = exponent(num1, num2);
+						num1 = calc::exponent(num1, num2);
 						break;
 
 					default:
@@ -107,7 +107,7 @@ int main()
 					}
 				}
 			cout << num1 << endl << "> ";
-			typed = to_string(num1);
+			firstTyped = to_string(num1);
 			secondTyped = "";
 			active = 1;
 			break;

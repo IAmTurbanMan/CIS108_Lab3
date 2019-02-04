@@ -5,47 +5,47 @@ using namespace std;
 
 double mem;
 
-double add(double x, double y)
+double calc::add(double x, double y)
 {
 	return x + y;
 }
 
-double subtract(double x, double y)
+double calc::subtract(double x, double y)
 {
 	return x - y;
 }
 
-double multiply(double x, double y)
+double calc::multiply(double x, double y)
 {
 	return x * y;
 }
 
-double divide(double x, double y)
+double calc::divide(double x, double y)
 {
 	return x / y;
 }
 
-double exponent(double x, double y)
+double calc::exponent(double x, double y)
 {
 	return pow(x, y);
 }
 
-double invert(double input)
+double calc::invert(double input)
 {
 	return 0.0 - input;
 }
 
-void memStore(double input)
+void calc::memStore(double input)
 {
 	mem = input;
 }
 
-double memRecall()
+double calc::memRecall()
 {
 	return mem;
 }
 
-void memClear()
+void calc::memClear()
 {
 	mem = 0;
 }
