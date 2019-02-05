@@ -53,6 +53,7 @@ int main()
 
 		case 'r': case 'R':
 			num1 = calc::memRecall();
+			firstTyped = to_string(num1);
 			cout << num1 << " recalled." << endl << "> ";
 			break;
 
