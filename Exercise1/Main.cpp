@@ -1,3 +1,6 @@
+//Lab 3: Working calculator
+
+//include libraries and header files (ie: calculator header)
 #include <iostream>
 #include "conio.h"
 #include "Calculator.h"
@@ -5,6 +8,7 @@
 
 using namespace std;
 
+//initialize variables
 double num1;
 double num2;
 char oper;
@@ -16,25 +20,26 @@ int active = 1;
 int main()
 {
 	cout << "> ";
+	//do while loop for the whole shebang
 	do
 	{
-		key = char(_getch());
+		key = char(_getch());	//wait for user input
 
-		switch (key)
+		switch (key)			//switch statement for user input
 		{
-		case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9': case '0': case '.':
-			cout << key;
+		case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9': case '0': case '.':		//in case of any of these inputs
+			cout << key;																									//output the key
 			if (active == 1)
 			{
-				firstTyped += key;
+				firstTyped += key;																							//make the first number = key if active number is 1
 			}
 			else
 			{
-				secondTyped += key;
+				secondTyped += key;																							//make second number = key if active is not 1
 			}
 			break;
 
-		case '+': case '-': case '*': case '/': case '^':
+		case '+': case '-': case '*': case '/': case '^':																	//in case of operator
 			if (active == 1)
 			{
 				num1 = stod(firstTyped);
@@ -42,9 +47,11 @@ int main()
 				firstTyped = "";
 				secondTyped = "";
 			}
-			cout << key;
+			cout << key;																									//output the key
 			oper = key;
 			break;
+
+		//calculator functuinality
 
 		case 's': case 'S':
 			calc::memStore(num1);
@@ -75,6 +82,8 @@ int main()
 			num2 = 0;
 			active = 1;
 			break;
+
+		//operations
 
 		case char(13) :
 			cout << endl;
@@ -117,7 +126,7 @@ int main()
 			break;
 
 		}
-	} while (key != 'x' && key != 'X');
+	} while (key != 'x' && key != 'X');  //x to exit app
 
 	return 0;
 }
